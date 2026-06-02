@@ -2,18 +2,93 @@
 <html>
 <head>
   <title>Love Boulevard</title>
+
+  <style>
+
+    body{
+      font-family: Arial, sans-serif;
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      margin:0;
+      padding:0;
+    }
+
+    h1{
+      font-size:60px;
+      margin-top:60px;
+    }
+
+    .subtitle{
+      color:#cbd5e1;
+      font-size:22px;
+      margin-bottom:50px;
+    }
+
+    .container{
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      flex-wrap:wrap;
+      padding-bottom:80px;
+    }
+
+    .card{
+      background:#1e293b;
+      width:300px;
+      padding:20px;
+      border-radius:20px;
+    }
+
+    .card h2{
+      margin-top:0;
+    }
+
+    button{
+      background:#ec4899;
+      color:white;
+      border:none;
+      padding:12px 20px;
+      border-radius:10px;
+      cursor:pointer;
+    }
+
+  </style>
+
 </head>
+
 <body>
-  <h1>Love Boulevard</h1>
-  <h2>Choose Your Companion</h2>
 
-  <h3>Emma</h3>
-  <p>The Dreamer</p>
+<h1>Love Boulevard</h1>
 
-  <h3>Valentina</h3>
-  <p>The Spark</p>
+<p class="subtitle">
+Find your perfect AI companion
+</p>
 
-  <h3>Sophia</h3>
-  <p>The Muse</p>
+<div class="container">
+
+<div class="card">
+<h2>Emma</h2>
+<p>The Dreamer</p>
+<p>Sweet, romantic and caring.</p>
+<button>Chat with Emma</button>
+</div>
+
+<div class="card">
+<h2>Valentina</h2>
+<p>The Spark</p>
+<p>Passionate, energetic and adventurous.</p>
+<button>Chat with Valentina</button>
+</div>
+
+<div class="card">
+<h2>Sophia</h2>
+<p>The Muse</p>
+<p>Elegant, intelligent and ambitious.</p>
+<button>Chat with Sophia</button>
+</div>
+
+</div>
+
 </body>
 </html>

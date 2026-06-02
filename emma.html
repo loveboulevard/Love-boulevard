@@ -11,7 +11,7 @@ body{margin:0;background:#0b1d4d;color:white;font-family:Arial;}
 .input-area{width:90%;max-width:800px;margin:20px auto;display:flex;gap:10px;}
 input{flex:1;padding:15px;border:none;border-radius:10px;font-size:16px;}
 button{background:#ff4fa0;color:white;border:none;border-radius:10px;padding:15px 25px;cursor:pointer;}
-.message{margin:10px 0;padding:10px;border-radius:10px;}
+.message{margin:10px 0;padding:12px;border-radius:10px;}
 .user{background:#294189;}
 .ai{background:#1d2f66;}
 a{color:#ff4fa0;}
@@ -23,43 +23,63 @@ a{color:#ff4fa0;}
 <div class="header">Emma ❤️</div>
 
 <div class="chat" id="chat">
-<div class="message ai">
-Hello ❤️ I'm Emma. How was your day?
-</div>
+  <div class="message ai">
+    Hello ❤️ I'm Emma. How was your day?
+  </div>
 </div>
 
 <div class="input-area">
-<input id="message" placeholder="Type a message...">
-<button onclick="sendMessage()">Send</button>
+  <input id="message" placeholder="Type a message...">
+  <button onclick="sendMessage()">Send</button>
 </div>
 
 <p style="text-align:center;">
-<a href="index.html">← Back to Love Boulevard</a>
+  <a href="index.html">← Back to Love Boulevard</a>
 </p>
 
 <script>
-function sendMessage(){
-let text=document.getElementById("message").value;
-if(text==="") return;
+async function sendMessage(){
+  const input = document.getElementById("message");
+  const text = input.value.trim();
 
-let chat=document.getElementById("chat");
+  if(text === "") return;
 
-chat.innerHTML+=`<div class="message user">${text}</div>`;
+  const chat = document.getElementById("chat");
 
-const replies=[
-"That's sweet ❤️",
-"I love talking with you.",
-"Tell me more about yourself.",
-"You always make me smile.",
-"I've been waiting for your message."
-];
+  chat.innerHTML += `<div class="message user">${text}</div>`;
+  input.value = "";
 
-const response=replies[Math.floor(Math.random()*replies.length)];
+  chat.innerHTML += `<div class="message ai" id="loading">Emma is typing...</div>`;
+  chat.scrollTop = chat.scrollHeight;
 
-chat.innerHTML+=`<div class="message ai">${response}</div>`;
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        character: "emma",
+        message: text
+      })
+    });
 
-document.getElementById("message").value="";
-chat.scrollTop=chat.scrollHeight;
+    const data = await response.json();
+
+    document.getElementById("loading").remove();
+
+    if(data.reply){
+      chat.innerHTML += `<div class="message ai">${data.reply}</div>`;
+    } else {
+      chat.innerHTML += `<div class="message ai">Sorry, I had a little problem answering.</div>`;
+    }
+
+  } catch (error) {
+    document.getElementById("loading").remove();
+    chat.innerHTML += `<div class="message ai">Connection error. Try again.</div>`;
+  }
+
+  chat.scrollTop = chat.scrollHeight;
 }
 </script>
 

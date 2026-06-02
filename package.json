@@ -1,0 +1,7 @@
+{
+  "name": "love-boulevard",
+  "version": "1.0.0",
+  "dependencies": {
+    "openai": "^5.0.0"
+  }
+}

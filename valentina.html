@@ -1,57 +1,67 @@
-
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Valentina</title>
 
 <style>
-body{
-background:#0f1b3d;
-color:white;
-font-family:Arial;
-text-align:center;
-padding:40px;
-}
-
-img{
-width:300px;
-border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.4);
-}
-
-a{
-color:#ff4fa0;
-text-decoration:none;
-font-weight:bold;
-}
+body{margin:0;background:#0b1d4d;color:white;font-family:Arial;}
+.header{padding:20px;text-align:center;font-size:32px;font-weight:bold;}
+.chat{width:90%;max-width:800px;margin:auto;height:60vh;background:#16295f;border-radius:20px;padding:20px;overflow-y:auto;}
+.input-area{width:90%;max-width:800px;margin:20px auto;display:flex;gap:10px;}
+input{flex:1;padding:15px;border:none;border-radius:10px;font-size:16px;}
+button{background:#ff4fa0;color:white;border:none;border-radius:10px;padding:15px 25px;cursor:pointer;}
+.message{margin:10px 0;padding:10px;border-radius:10px;}
+.user{background:#294189;}
+.ai{background:#1d2f66;}
+a{color:#ff4fa0;}
 </style>
-
 </head>
 
 <body>
 
-<h1>Valentina</h1>
+<div class="header">Valentina 🔥</div>
 
-<img src="valentina.png">
+<div class="chat" id="chat">
+<div class="message ai">
+Hey, I'm Valentina. You have my attention 😏
+</div>
+</div>
 
-<h2>The Spark</h2>
+<div class="input-area">
+<input id="message" placeholder="Type a message...">
+<button onclick="sendMessage()">Send</button>
+</div>
 
-<p>
-Passionate, playful and irresistible.
-</p>
-
-<p>
-Valentina loves adventure, spontaneity and deep conversations.
-She is energetic, confident and always knows how to make every moment exciting.
-</p>
-
-<p>
-Future AI Chat Coming Soon...
-</p>
-
-<br>
-
+<p style="text-align:center;">
 <a href="index.html">← Back to Love Boulevard</a>
+</p>
+
+<script>
+function sendMessage(){
+let text=document.getElementById("message").value;
+if(text==="") return;
+
+let chat=document.getElementById("chat");
+
+chat.innerHTML+=`<div class="message user">${text}</div>`;
+
+const replies=[
+"Oh really? 😏",
+"That sounds exciting.",
+"You have my attention.",
+"You're interesting.",
+"I like your energy."
+];
+
+const response=replies[Math.floor(Math.random()*replies.length)];
+
+chat.innerHTML+=`<div class="message ai">${response}</div>`;
+
+document.getElementById("message").value="";
+chat.scrollTop=chat.scrollHeight;
+}
+</script>
 
 </body>
 </html>

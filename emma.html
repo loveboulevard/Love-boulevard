@@ -5,77 +5,22 @@
 <title>Emma</title>
 
 <style>
-body{
-    margin:0;
-    background:#0b1d4d;
-    color:white;
-    font-family:Arial;
-}
-
-.header{
-    padding:20px;
-    text-align:center;
-    font-size:32px;
-    font-weight:bold;
-}
-
-.chat{
-    width:90%;
-    max-width:800px;
-    margin:auto;
-    height:60vh;
-    background:#16295f;
-    border-radius:20px;
-    padding:20px;
-    overflow-y:auto;
-}
-
-.input-area{
-    width:90%;
-    max-width:800px;
-    margin:20px auto;
-    display:flex;
-    gap:10px;
-}
-
-input{
-    flex:1;
-    padding:15px;
-    border:none;
-    border-radius:10px;
-    font-size:16px;
-}
-
-button{
-    background:#ff4fa0;
-    color:white;
-    border:none;
-    border-radius:10px;
-    padding:15px 25px;
-    cursor:pointer;
-}
-
-.message{
-    margin:10px 0;
-    padding:10px;
-    border-radius:10px;
-}
-
-.user{
-    background:#294189;
-}
-
-.ai{
-    background:#1d2f66;
-}
+body{margin:0;background:#0b1d4d;color:white;font-family:Arial;}
+.header{padding:20px;text-align:center;font-size:32px;font-weight:bold;}
+.chat{width:90%;max-width:800px;margin:auto;height:60vh;background:#16295f;border-radius:20px;padding:20px;overflow-y:auto;}
+.input-area{width:90%;max-width:800px;margin:20px auto;display:flex;gap:10px;}
+input{flex:1;padding:15px;border:none;border-radius:10px;font-size:16px;}
+button{background:#ff4fa0;color:white;border:none;border-radius:10px;padding:15px 25px;cursor:pointer;}
+.message{margin:10px 0;padding:10px;border-radius:10px;}
+.user{background:#294189;}
+.ai{background:#1d2f66;}
+a{color:#ff4fa0;}
 </style>
-
 </head>
+
 <body>
 
-<div class="header">
-Emma
-</div>
+<div class="header">Emma ❤️</div>
 
 <div class="chat" id="chat">
 <div class="message ai">
@@ -88,35 +33,34 @@ Hello ❤️ I'm Emma. How was your day?
 <button onclick="sendMessage()">Send</button>
 </div>
 
+<p style="text-align:center;">
+<a href="index.html">← Back to Love Boulevard</a>
+</p>
+
 <script>
-
 function sendMessage(){
-
-let text =
-document.getElementById("message").value;
-
+let text=document.getElementById("message").value;
 if(text==="") return;
 
-let chat =
-document.getElementById("chat");
+let chat=document.getElementById("chat");
 
-chat.innerHTML += `
-<div class="message user">
-${text}
-</div>
-`;
+chat.innerHTML+=`<div class="message user">${text}</div>`;
 
-chat.innerHTML += `
-<div class="message ai">
-I received your message: "${text}"
-</div>
-`;
+const replies=[
+"That's sweet ❤️",
+"I love talking with you.",
+"Tell me more about yourself.",
+"You always make me smile.",
+"I've been waiting for your message."
+];
+
+const response=replies[Math.floor(Math.random()*replies.length)];
+
+chat.innerHTML+=`<div class="message ai">${response}</div>`;
 
 document.getElementById("message").value="";
-
-chat.scrollTop = chat.scrollHeight;
+chat.scrollTop=chat.scrollHeight;
 }
-
 </script>
 
 </body>

@@ -1,35 +1,123 @@
-
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Emma</title>
+
 <style>
 body{
-background:#0f1b3d;
-color:white;
-font-family:Arial;
-text-align:center;
-padding:40px;
+    margin:0;
+    background:#0b1d4d;
+    color:white;
+    font-family:Arial;
 }
-img{
-width:300px;
-border-radius:20px;
+
+.header{
+    padding:20px;
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+}
+
+.chat{
+    width:90%;
+    max-width:800px;
+    margin:auto;
+    height:60vh;
+    background:#16295f;
+    border-radius:20px;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.input-area{
+    width:90%;
+    max-width:800px;
+    margin:20px auto;
+    display:flex;
+    gap:10px;
+}
+
+input{
+    flex:1;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    background:#ff4fa0;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:15px 25px;
+    cursor:pointer;
+}
+
+.message{
+    margin:10px 0;
+    padding:10px;
+    border-radius:10px;
+}
+
+.user{
+    background:#294189;
+}
+
+.ai{
+    background:#1d2f66;
 }
 </style>
+
 </head>
 <body>
 
-<h1>Emma</h1>
+<div class="header">
+Emma
+</div>
 
-<img src="emma.png">
+<div class="chat" id="chat">
+<div class="message ai">
+Hello ❤️ I'm Emma. How was your day?
+</div>
+</div>
 
-<p>The Dreamer</p>
+<div class="input-area">
+<input id="message" placeholder="Type a message...">
+<button onclick="sendMessage()">Send</button>
+</div>
 
-<p>Emma is sweet, romantic and caring.</p>
+<script>
 
-<p>Future AI Chat Coming Soon...</p>
+function sendMessage(){
 
-<a href="index.html">← Back</a>
+let text =
+document.getElementById("message").value;
+
+if(text==="") return;
+
+let chat =
+document.getElementById("chat");
+
+chat.innerHTML += `
+<div class="message user">
+${text}
+</div>
+`;
+
+chat.innerHTML += `
+<div class="message ai">
+I received your message: "${text}"
+</div>
+`;
+
+document.getElementById("message").value="";
+
+chat.scrollTop = chat.scrollHeight;
+}
+
+</script>
 
 </body>
 </html>
